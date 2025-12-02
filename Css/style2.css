@@ -1,0 +1,556 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 10% 10%, rgba(43,255,255,0.04), transparent 12%),
+        radial-gradient(circle at 90% 90%, rgba(250,78,4,0.03), transparent 18%),
+        linear-gradient(135deg, #08121a 0%, #0e2733 45%, #07222b 100%);
+    color: #e6f7f8;
+    font-family: "Montserrat", Arial, sans-serif;
+    line-height: 1.5;
+    transition: background .6s ease;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 100px 10px 200px 10px;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+}
+
+header img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 150px 50px 0 0;
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.3),
+        0 0 20px rgba(3, 233, 250, 0.3);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+header img:hover {
+    transform: translate(-6px) scale(1.05);
+    box-shadow:
+        0 0 30px rgba(3, 233, 250, 0.6),
+        0 0 60px rgba(3, 233, 250, 0.4);
+}
+
+header h1 {
+    padding: 20px;
+    margin: 170px 0 0 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    position: relative;
+}
+
+header h1::after {
+    content: "Web Developer";
+    display: block;
+    margin-top: 8px;
+    color: #2bffff;
+    font-weight: 500;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid #2bffff;
+    animation:
+        typing 7s steps(50) infinite,
+        cursorBlink 0s step-end infinite,
+        words 7s infinite;
+}
+
+@keyframes typing {
+    0%   { width: 0ch; }
+    20%  { width: 13ch; }
+    25%  { width: 13ch; }
+    30%  { width: 0ch; }
+
+    35%  { width: 0ch; }
+    50%  { width: 11ch; }
+    55%  { width: 11ch; }
+    60%  { width: 0ch; }
+
+    65%  { width: 0ch; }
+    85%  { width: 13ch; }
+    95%  { width: 13ch; }
+    100% { width: 0ch; }
+}
+
+@keyframes cursorBlink {
+    0%,50% { border-right-color: #2bffff; }
+    51%,100% { border-right-color: transparent; }
+}
+
+@keyframes words {
+    0%, 33%   { content: "Web Developer"; }
+    34%, 66%  { content: "Programmer"; }
+    67%, 100% { content: "UI/UX Designer"; }
+}
+
+/* NAVIGATION */
+header nav {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 50px 20px 50px;
+    z-index: 1000;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+}
+
+header nav ul {
+    display: flex;
+    gap: 50px;
+    list-style: georgian;
+}
+
+header nav a {
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    position: relative;
+    transition: color .3s ease;
+}
+
+header nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2bffff;
+    transition: width .3s ease;
+}
+
+header nav a:hover {
+    color: #2bffff;
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+section#Skills {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 100px;
+}
+
+#title{
+    display: inline;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    padding-top: 130px;
+    margin: 200px 0 0 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.5;
+    position: relative;
+}
+
+#title::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2bffff;
+    transition: width .3s ease;
+}
+
+#title:hover {
+    color: #2bffff;
+}
+
+#title:hover::after {
+    width: 100%;
+}
+
+section#Skills-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.Skill1, .Skill2, .Skill3 {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(43,255,255,0.1);
+    border-radius: 12px;
+    padding: 50px;
+    transition: all .3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn .6s forwards ease;
+}
+
+.Skill1 { animation-delay: 0.2s; }
+.Skill2 { animation-delay: 0.4s; }
+.Skill3 { animation-delay: 0.6s; }
+
+.Skill1:hover, .Skill2:hover, .Skill3:hover {
+    background: rgba(237, 237, 237, 0.05);
+    border-color: rgba(43,255,255,0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(43,255,255,0.1);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.Skill1 article, .Skill2 article, .Skill3 article {
+    text-align: center;
+}
+
+.Skill1 h2, .Skill2 h2, .Skill3 h2 {
+    color: #2bffff;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.Skill1 p, .Skill2 p, .Skill3 p {
+    color: beige;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+section#About-me{
+    display: flex;
+}
+
+section#About-me img{
+    width: 280px;
+    height: auto;
+    margin: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px aqua;
+}
+
+#signature{
+    width: 80px;
+    height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px aqua;
+}
+
+h3{
+    text-align: center;
+    margin: 0;
+}
+
+section#block {
+    text-align: center;
+    padding: 20px;
+    margin: 180px 0 0 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    position: relative;
+}
+
+section#block h2{
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+section#block p{
+    margin-top: 100px;
+}
+
+#title2{
+    display: inline;
+    text-align: center;
+    justify-content: center;
+    padding: 28px;
+    padding-top: 100px;
+    margin: 200px 0 0 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.5;
+    position: relative;
+}
+
+#title2::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2bffff;
+    transition: width .3s ease;
+}
+
+#title2:hover {
+    color: #2bffff;
+}
+
+#title2:hover::after {
+    width: 100%;
+}
+
+/* CONTACT FORM */
+.contact {
+    grid-column: 2 / -2;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(43,255,255,0.1);
+    border-radius: 12px;
+    width: 50%;
+    max-width: 700px;
+    padding: 100px 30px;
+    margin: 200px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn .6s forwards ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#title3{
+    display: inline;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.5;
+    position: relative;
+}
+
+#title3::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2bffff;
+    transition: width .3s ease;
+}
+
+#title3:hover {
+    color: #2bffff;
+}
+
+#title3:hover::after {
+    width: 100%;
+}
+
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact label {
+    display: inline;
+    text-align: left;
+    justify-content: left;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(43, 255, 255, 0.2);
+    background: rgba(241, 240, 240, 0.06);
+    color: #e6f7f8;
+    font-size: 0.95rem;
+    transition: border .3s ease, background .3s ease;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    border-color: #2bffff;
+    background: rgba(43,255,255,0.1);
+    outline: none;
+}
+
+.contact input[type="submit"],
+.contact input[type="reset"] {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #2bffff;
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background .3s ease, transform .3s ease;
+}
+
+.contact input[type="submit"]:hover,
+.contact input[type="reset"]:hover {
+    background: #22c8c8;
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(135deg, #08121a 0%, #0e2733 45%, #07222b 100%);
+    color: #e6f7f8;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 0.95rem;
+    border-top: 2px solid rgba(43, 255, 255, 0.2);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= RESPONSIVE UPDATES ================= */
+@media (max-width: 1024px) {
+    section#About-me {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    section#About-me img {
+        margin: 20px 0;
+        width: 60%;
+        height: auto;
+    }
+
+    #signature {
+        top: auto;
+        left: 340px;
+        transform: none;
+        margin: 50px auto 30px auto;
+    }
+
+    section#Skills-items {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 80px 10px 150px 10px;
+    }
+
+    header img {
+        margin: 0 0 20px 0;
+        width: 180px;
+        height: 180px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    section#Skills {
+        margin: 60px 15px;
+    }
+
+    #title, #title2 {
+        font-size: 1.3rem;
+        padding-top: 80px;
+        margin: 120px 0 0 0;
+    }
+
+    section#block {
+        margin: 120px 15px 0 15px;
+        padding: 15px;
+    }
+
+    .contact {
+        width: 90%;
+        padding: 25px 20px;
+        margin: 100px auto;
+    }
+
+    .contact h2 {
+        font-size: 1.4rem;
+    }
+
+    .contact input[type="submit"],
+    .contact input[type="reset"] {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header img {
+        width: 150px;
+        height: 150px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    #title, #title2 {
+        font-size: 1.1rem;
+        padding-top: 60px;
+        margin: 80px 0 0 0;
+    }
+
+    section#Skills-items {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    section#About-me img {
+        width: 80%;
+        margin: 15px 0;
+    }
+
+    .contact input[type="text"],
+    .contact input[type="email"],
+    .contact textarea {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}

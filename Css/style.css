@@ -1,0 +1,199 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
+body{
+    background: #1e1e1e;
+    color: #ffffff;
+    font-family: "Montserrat", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+}
+
+/* Header / hero */
+header{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 60px 10%;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-content: center; /* center header content (including image) */
+}
+
+/* main heading with reveal */
+header h1{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp .6s ease forwards .15s;
+}
+
+/* dynamic role/name below the heading */
+header h1::after{
+    content: "Web Developer";
+    display: block;
+    margin-top: 8px;
+    color: #2bffff;
+    font-weight: 600;
+    font-size: 1rem;
+    animation: roles 8s steps(1) infinite;
+}
+
+/* circular profile image aligned to right with left shadow */
+header img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto; /* center image inside header */
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.45),    /* centered drop shadow below */
+        0 0 20px #2bffff;    /* soft orange glow around image */
+    transition: transform .28s ease-in-out, box-shadow .28s ease;
+    display: block;
+}
+/* subtle hover interaction */
+header img:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 
+        0 0 30px #2bffff,    /* center glow */
+        0 0 60px rgba(250, 78, 4, 0.2);    /* wider, softer glow */
+}
+
+/* layout for main content */
+main{
+    max-width: 900px;
+    margin: 36px auto;
+    padding: 0 20px;
+}
+
+/* sections with gentle elevation and staggered reveal */
+section{
+    background: rgba(255,255,255,0.03);
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeIn .6s ease forwards;
+}
+
+section:nth-of-type(1){ animation-delay: .2s; }
+section:nth-of-type(2){ animation-delay: .4s; }
+section:nth-of-type(3){ animation-delay: .6s; }
+
+/* links and lists */
+.projects ul{
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+
+.projects a{
+    color: #ffd9b8;
+    text-decoration: none;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    transition: transform .18s, background .18s;
+}
+
+.projects a:hover{
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.04);
+}
+
+/* small screens: stack header and center content */
+@media (max-width: 700px){
+    header{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 5%;
+    }
+    header img{
+        margin-left: 0;
+        margin-top: 18px;
+        width: 140px;
+        height: 140px;
+    }
+    header h1{ font-size: 1.4rem; }
+    header h1::after{ font-size: 0.95rem; }
+}
+
+/* very small screens */
+@media (max-width: 420px){
+    header img{ width: 110px; height: 110px; }
+    header h1{ font-size: 1.15rem; }
+}
+
+/* animations */
+@keyframes fadeUp{
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn{
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+/* cycle through role strings */
+@keyframes roles{
+    0%   { content: "Web Developer"; }
+    25%  { content: "UI/UX Designer"; }
+    50%  { content: "Programmer"; }
+    75% { content: "Web Developer"; }
+}
+
+/* ...existing code... */
+
+section h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+section h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    right: 0;  /* changed from left to right */
+    bottom: -4px;
+    width: 0;
+    height: 3px;
+    background: #2bffff;
+    transition: width 0.4s ease;  /* shortened transition time */
+}
+
+section h2:hover::after {
+    width: 100%;
+    left: 0;  /* animate from right to left */
+    right: auto;
+}
+
+/* Remove the previous animation since we're using hover now */
+@keyframes lineGrow {
+    to {
+        width: 100%;
+    }
+}

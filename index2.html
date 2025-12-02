@@ -1,0 +1,115 @@
+<?php
+// PHP code at the top to handle form submission
+$formMessage = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $message = htmlspecialchars(trim($_POST['message']));
+
+    $to = "karamziouchi@gmail.com"; // Replace with your email
+    $subject = "Contact form submission from $name";
+    $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    $headers = "From: $email";
+
+    if (mail($to, $subject, $body, $headers)) {
+        $formMessage = "Message sent successfully!";
+    } else {
+        $formMessage = "Failed to send message.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="autor" content="Ziouchi Karam">
+    <meta name="description" content="Portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karam's Portfolio</title>
+    <link rel="stylesheet" href="Css/style2.css">
+    <link rel="icon" href="img/icon.png">
+</head>
+<body>
+
+<header>
+    <h1>Hello, I'm Karam Abderrahmane Ziouchi</h1>
+    <img src="img/profile2.jpg" alt="Software Engineer">
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#title">Skills</a></li>
+            <li><a href="#About-me">About Me</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Skills Section -->
+    <section id="Skills">
+        <h2 id="title">My Skills</h2><br>
+        <section id="Skills-items">
+            <section class="Skill1">
+                <article>
+                    <h2>Web Developer</h2>
+                    <p>Creating beautiful and functional websites using HTML, CSS, and JavaScript. Building responsive designs that work across all devices.</p>
+                </article>
+            </section>
+            <section class="Skill2">
+                <article>
+                    <h2>Programmer</h2>
+                    <p>Writing clean, efficient code in multiple programming languages. Problem-solving.</p>
+                </article>
+            </section>
+            <section class="Skill3">
+                <article>
+                    <h2>UI/UX Design</h2>
+                    <p>Designing intuitive user interfaces and creating engaging user experiences. Focusing on usability and modern design principles.</p>
+                </article>
+            </section>
+        </section>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="About-me">
+        <img src="img/about1.jpg" alt="About Image">
+        <section id="block">
+            <h2 id="title2">About Me</h2>
+            <p>Hello! I'm Karam Abderrahmane Ziouchi, a passionate software engineer with a knack for creating innovative solutions. With a strong foundation in web development and programming, I thrive on turning ideas into reality through code. My journey in tech has equipped me with skills in HTML, CSS, JavaScript, and various programming languages. I'm dedicated to continuous learning and staying updated with the latest industry trends. When I'm not coding, I enjoy exploring new technologies and contributing to open-source projects. Let's connect and create something amazing together!</p>
+        </section>
+        <img src="img/about2.jpg" alt="About Image 2">
+    </section>
+
+    <img id="signature" src="img/signature.png" alt="My Signature">
+    <h3>My Signature</h3>
+
+    <!-- Contact Section -->
+    <section id="Contact" class="contact">
+        <h2 id="title3">Contact Me</h2>
+
+        <!-- Display PHP message -->
+        <?php if(!empty($formMessage)) { echo "<p style='color:#2bffff; text-align:center;'>$formMessage</p>"; } ?>
+
+        <form method="post" action="">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Karam Ziouchi. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
